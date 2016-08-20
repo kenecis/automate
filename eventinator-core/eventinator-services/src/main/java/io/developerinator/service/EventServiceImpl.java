@@ -72,8 +72,8 @@ public class EventServiceImpl implements EventService {
 
         Validate.notNull(itenerary);
 
-        return null;
+        List<Event> events = eventRepository.findAll(itenerary);
+
+        return events.stream().map(event -> mapper.map(event, EventDto.class)).collect(Collectors.<EventDto> toList());
     }
-
-
 }
