@@ -2,7 +2,7 @@ package io.developerinator.app.dto;
 
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +21,9 @@ public class IteneraryDto implements Serializable{
 
     private boolean visibility;
 
-    private Set<EventDto> events;
+    private List<LocationAndTimeDto> locationAndTime;
+
+    private List<InterestDto> interests;
+
+    private double radius;
 }

@@ -11,7 +11,7 @@ public interface WatchOutService {
 
     void delete(WatchOut watchOut);
 
-    WatchOut find(String id);
+    WatchOut find(long id);
 
     List<WatchOut> findAll();
 }

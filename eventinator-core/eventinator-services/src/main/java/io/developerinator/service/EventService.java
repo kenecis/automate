@@ -1,17 +1,23 @@
 package io.developerinator.service;
 
 
-import io.developerinator.app.domain.Event;
-
 import java.util.List;
+
+import io.developerinator.app.dto.EventDto;
+import io.developerinator.app.dto.IteneraryDto;
+import io.developerinator.app.ref.EventSource;
 
 public interface EventService {
 
-    Event save(Event event);
+    EventDto save(EventDto eventDto);
 
-    void delete(Event event);
+    void delete(long id);
 
-    Event find(String id);
+    EventDto find(long id);
 
-    List<Event> findAll();
+    List<EventDto> findAll();
+
+    List<EventDto> findAllBySource(EventSource eventSource);
+
+    List<EventDto> findIteneraries(IteneraryDto itenerary);
 }

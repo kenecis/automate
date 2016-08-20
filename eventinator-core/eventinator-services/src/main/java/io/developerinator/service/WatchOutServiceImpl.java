@@ -28,8 +28,8 @@ public class WatchOutServiceImpl implements WatchOutService{
     }
 
     @Override
-    public WatchOut find(String id) {
-        Validate.notEmpty(id);
+    public WatchOut find(long id) {
+        Validate.notNull(id);
         return watchOutRepository.findOne(id);
     }
 

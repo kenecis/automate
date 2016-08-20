@@ -1,10 +1,14 @@
 package io.developerinator.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-import io.developerinator.app.domain.Event;
 import org.springframework.stereotype.Repository;
 
+import io.developerinator.app.domain.Account;
+import io.developerinator.app.domain.Event;
+import io.developerinator.app.ref.EventSource;
 @Repository
-public interface EventRepository extends JpaRepository<Event, String>{
+public interface EventRepository extends BaseRepository<Event, Long>, EventRepositoryCustom  {
+
+    List<Event> findByEventSourceAndOwner(EventSource eventSource, Account account);
 }
