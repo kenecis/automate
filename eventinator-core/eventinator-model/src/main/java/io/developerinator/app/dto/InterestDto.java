@@ -1,7 +1,13 @@
 package io.developerinator.app.dto;
 
-/**
- * Created by training on 8/20/16.
- */
-public class InterestDto {
+import java.io.Serializable;
+
+import lombok.Data;
+
+@Data
+public class InterestDto implements Serializable{
+
+    private static final long serialVersionUID = 6911376314923407481L;
+
+    private String name;
 }

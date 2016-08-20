@@ -1,7 +1,14 @@
 package io.developerinator.app.domain;
 
-/**
- * Created by training on 8/20/16.
- */
+
 public enum FilterStatus {
+
+    ACTIVE("Active"),
+    INACTIVE("Inactive");
+
+    private String label;
+
+    FilterStatus(String label){
+        this.label = label;
+    }
 }

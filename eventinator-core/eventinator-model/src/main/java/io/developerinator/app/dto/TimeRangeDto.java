@@ -1,7 +1,18 @@
 package io.developerinator.app.dto;
 
-/**
- * Created by training on 8/20/16.
- */
-public class TimeRangeDto {
+
+import lombok.Data;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.time.LocalTime;
+
+@Data
+public class TimeRangeDto implements Serializable{
+
+    private static final long serialVersionUID = -9143846734162637741L;
+
+    private LocalTime startTime;
+
+    private LocalTime endTime;
 }

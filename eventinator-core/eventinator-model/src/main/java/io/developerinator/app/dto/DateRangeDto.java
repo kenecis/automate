@@ -1,7 +1,17 @@
 package io.developerinator.app.dto;
 
-/**
- * Created by training on 8/20/16.
- */
-public class DateRangeDto {
+
+import lombok.Data;
+import org.joda.time.LocalDate;
+
+import java.io.Serializable;
+
+@Data
+public class DateRangeDto implements Serializable{
+
+    private static final long serialVersionUID = -7033573532658207021L;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
 }
