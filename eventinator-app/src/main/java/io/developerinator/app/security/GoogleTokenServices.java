@@ -1,5 +1,6 @@
 package io.developerinator.app.security;
 
+import lombok.extern.java.Log;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -26,6 +27,7 @@ import java.util.Map;
 /**
  * Copied the DefaultAccessTokenConverter and modified for Google token details.
  */
+@Log
 public class GoogleTokenServices extends RemoteTokenServices {
 
     private RestOperations restTemplate;
@@ -76,7 +78,7 @@ public class GoogleTokenServices extends RemoteTokenServices {
         Map<String, Object> checkTokenResponse = checkToken(accessToken);
 
         if (checkTokenResponse.containsKey("error")) {
-//            logger.debug("check_token returned error: " + checkTokenResponse.get("error"));
+            logger.debug("check_token returned error: " + checkTokenResponse.get("error"));
             throw new InvalidTokenException(accessToken);
         }
 
@@ -96,10 +98,10 @@ public class GoogleTokenServices extends RemoteTokenServices {
     }
 
     private void transformNonStandardValuesToStandardValues(Map<String, Object> map) {
-//        LOGGER.debug("Original map = " + map);
+        logger.debug("Original map = " + map);
         map.put("client_id", map.get("issued_to")); // Google sends 'client_id' as 'issued_to'
         map.put("user_name", map.get("user_id")); // Google sends 'user_name' as 'user_id'
-//        LOGGER.debug("Transformed = " + map);
+        logger.debug("Transformed = " + map);
     }
 
     private String getAuthorizationHeader(String clientId, String clientSecret) {

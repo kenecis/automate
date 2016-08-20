@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
@@ -86,8 +85,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public OAuth2ClientAuthenticationProcessingFilter authenticationProcessingFilter(){
-        OAuth2ClientAuthenticationProcessingFilter filter = new OAuth2ClientAuthenticationProcessingFilter(DEFAULT_FILTER_PROCESSOR_URL);
+    public CustomOAuth2ClientAuthenticationProcessingFilter authenticationProcessingFilter(){
+        CustomOAuth2ClientAuthenticationProcessingFilter filter = new CustomOAuth2ClientAuthenticationProcessingFilter(DEFAULT_FILTER_PROCESSOR_URL);
         filter.setRestTemplate(googleRestTemplate);
         filter.setTokenServices(tokenServices());
         return filter;

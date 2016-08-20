@@ -2,6 +2,7 @@ package io.developerinator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class App {
     }
 
     @RequestMapping("/test")
-    public Principal test(Principal principal){
+    public Principal test(OAuth2Authentication principal){
         return principal;
     }
 }
