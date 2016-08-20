@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import io.developerinator.app.domain.EventSource;
+import io.developerinator.app.ref.EventSource;
 import lombok.Data;
 
 @Data

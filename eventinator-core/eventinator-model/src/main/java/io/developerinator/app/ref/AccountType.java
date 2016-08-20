@@ -1,4 +1,4 @@
-package io.developerinator.app.domain;
+package io.developerinator.app.ref;
 
 
 public enum AccountType {

@@ -1,4 +1,4 @@
-package io.developerinator.app.domain;
+package io.developerinator.app.base;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.CreatedBy;

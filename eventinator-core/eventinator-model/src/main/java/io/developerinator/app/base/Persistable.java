@@ -1,4 +1,4 @@
-package io.developerinator.app.domain;
+package io.developerinator.app.base;
 
 import lombok.Getter;
 import lombok.Setter;

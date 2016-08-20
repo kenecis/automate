@@ -1,7 +1,7 @@
 package io.developerinator.app.dto;
 
 
-import io.developerinator.app.domain.AccountType;
+import io.developerinator.app.ref.AccountType;
 
 import java.io.Serializable;
 import java.util.Set;

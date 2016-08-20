@@ -1,5 +1,7 @@
 package io.developerinator.app.domain;
 
+import io.developerinator.app.base.Auditable;
+import io.developerinator.app.ref.EventSource;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import io.developerinator.app.domain.FilterStatus;
+import io.developerinator.app.ref.FilterStatus;
 import lombok.Data;
 
 @Data

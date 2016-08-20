@@ -1,5 +1,6 @@
 package io.developerinator.app.domain;
 
+import io.developerinator.app.base.Persistable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
