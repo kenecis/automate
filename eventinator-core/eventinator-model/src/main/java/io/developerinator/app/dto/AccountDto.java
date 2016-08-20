@@ -18,6 +18,8 @@ public class AccountDto implements Serializable{
 
     private String password;
 
+    private ProfileDto profile;
+
     private AccountType accountType;
 
     private Set<InterestDto> interests;

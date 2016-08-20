@@ -60,6 +60,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public AccountDto findByExternalId(String externalId) {
+        Validate.notNull(externalId);
+        return mapper.map(accountRepository.findByProfile_Id(externalId), AccountDto.class);
+    }
+
+    @Override
     public List<AccountDto> findAll() {
         return accountRepository.findAll().stream().map(a -> mapper.map(a, AccountDto.class)).collect(Collectors.toList());
     }

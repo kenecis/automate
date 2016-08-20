@@ -15,5 +15,7 @@ public interface AccountService  extends UserDetailsService {
 
     AccountDto find(Long id);
 
+    AccountDto findByExternalId(String externalId);
+
     List<AccountDto> findAll();
 }

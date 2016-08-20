@@ -102,12 +102,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().fullyAuthenticated()
                 .and()
                 .csrf().disable()
-                .headers().frameOptions().sameOrigin()
-                .and()
                 .formLogin().disable()
                 .logout().logoutUrl("/api/logout").logoutSuccessHandler(logoutSuccessHandler()).permitAll()
                 .and()
-                .anonymous().disable()
                 .addFilterAfter(oAuth2ClientContextFilter, ExceptionTranslationFilter.class)
                 .addFilterBefore(authenticationProcessingFilter(), FilterSecurityInterceptor.class)
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());

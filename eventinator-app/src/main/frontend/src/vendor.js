@@ -10,6 +10,8 @@ require('angular-resource');
 
 /* Styles*/
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+require('../node_modules/font-awesome/css/font-awesome.css');
 require('./public/less/main.less');
 
 /* Devcup Automate Modules */
+require('./app/app.module');

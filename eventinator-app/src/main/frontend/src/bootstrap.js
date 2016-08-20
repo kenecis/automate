@@ -4,6 +4,7 @@ angular.element(document).ready(function(){
         'ui.router',
         'ngResource',
         'ui.bootstrap',
-        'ngMessages'
+        'ngMessages',
+        'app'
     ]);
 });
