@@ -20,11 +20,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.*;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
 @ToString
-public class Account extends Persistable{
+public class Account extends Persistable {
 
     @Column
     private String username;
@@ -35,7 +38,12 @@ public class Account extends Persistable{
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ManyToMany
+    @JoinTable(
+            name = "ACCOUNT_INTERESTS",
+            joinColumns = @JoinColumn(name = "ACCOUNT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "INTEREST_ID")
+    )
     private Set<Interest> interests;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -44,23 +52,4 @@ public class Account extends Persistable{
     @Embedded
     private Profile profile;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Account account = (Account) o;
-
-        return new EqualsBuilder()
-                .append(id, account.id)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(id)
-                .toHashCode();
-    }
 }
