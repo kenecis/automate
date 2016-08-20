@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: "@jdbc.url@/@jdbc.schema@"
+    username: "@jdbc.username@"
+    password: "@jdbc.password@"
+    driverClassName: "@jdbc.driverClassName@"
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    database-platform: "@hibernate.dialect@"
+    hibernate:
+      ddl-auto: create-drop
+server:
+  session:
+    cookie:
+      name: EVENTINATOR_SESSION_ID
+    timeout: -1
+google:
+  client:
+    id: 36460728664-pp2eg91nl1jfsjqtdpts62r9rgruroe8.apps.googleusercontent.com
+    secret: zmiW24GRnxF4wXMvqQNAFLr2
+  auth:
+    scope: https://www.googleapis.com/auth/userinfo.email,https://www.googleapis.com/auth/userinfo.profile
+  accessTokenUri: https://accounts.google.com/o/oauth2/token
+  userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+  authorization:
+    code: authorization_code
+  preestablished:
+    redirect:
+      url: http://localhost:8080/googleLogin

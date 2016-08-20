@@ -13,5 +13,3 @@ require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
 require('./public/less/main.less');
 
 /* Devcup Automate Modules */
-require('./app/app.module');
-require('./app/admin/admin.module');

@@ -19,6 +19,30 @@
         <version>1.4.0.RELEASE</version>
     </parent>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <commons-validator.version>1.5.1</commons-validator.version>
+        <querydsl.version>3.7.4</querydsl.version>
+        <lombok.version>1.16.10</lombok.version>
+
+        <frontend-plugin.version>1.0</frontend-plugin.version>
+        <frontend-node.version>v6.4.0</frontend-node.version>
+        <frontend-npm.version>3.10.6</frontend-npm.version>
+
+
+        <jdbc.host>localhost</jdbc.host>
+        <jdbc.schema>eventinatordb</jdbc.schema>
+        <jdbc.url>jdbc:postgresql://${jdbc.host}</jdbc.url>
+        <jdbc.username>postgres</jdbc.username>
+        <jdbc.password>postgres</jdbc.password>
+        <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
+
+        <hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernate.dialect>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -59,11 +83,21 @@
         </dependencies>
     </dependencyManagement>
 
-    <properties>
-        <commons-lang3.version>3.4</commons-lang3.version>
-        <commons-validator.version>1.5.1</commons-validator.version>
-        <querydsl.version>3.7.4</querydsl.version>
-        <lombok.version>1.16.10</lombok.version>
-    </properties>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>${frontend-plugin.version}</version>
+                    <configuration>
+                        <workingDirectory>${project.basedir}/src/main/frontend</workingDirectory>
+                        <nodeVersion>${frontend-node.version}</nodeVersion>
+                        <npmVersion>${frontend-npm.version}</npmVersion>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>

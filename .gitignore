@@ -16,3 +16,7 @@ Servers
 *.iml
 node_modules
 icos-otc/src/main/webapp/resources/applet/printing-applet*.jar
+*.log
+node/
+node_modules/
+target/
