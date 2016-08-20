@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class GoogleProfileDto {
+public class ProfileDto {
 
     private String id;
 

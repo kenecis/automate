@@ -1,17 +1,19 @@
 package io.developerinator.service;
 
 
+import io.developerinator.app.dto.AccountDto;
+import io.developerinator.app.dto.ProfileDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import java.util.List;
 
-import io.developerinator.app.domain.Account;
+public interface AccountService  extends UserDetailsService {
 
-public interface AccountService {
+    AccountDto save(ProfileDto profileDto);
 
-    Account save(Account account);
+    void delete(AccountDto account);
 
-    void delete(Account account);
+    AccountDto find(Long id);
 
-    Account find(String id);
-
-    List<Account> findAll();
+    List<AccountDto> findAll();
 }

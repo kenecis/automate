@@ -27,6 +27,7 @@
         <commons-validator.version>1.5.1</commons-validator.version>
         <querydsl.version>3.7.4</querydsl.version>
         <lombok.version>1.16.10</lombok.version>
+        <dozer.version>5.5.1</dozer.version>
 
         <frontend-plugin.version>1.0</frontend-plugin.version>
         <frontend-node.version>v6.4.0</frontend-node.version>
@@ -80,8 +81,21 @@
                 <artifactId>commons-validator</artifactId>
                 <version>${commons-validator.version}</version>
             </dependency>
+            <dependency>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer</artifactId>
+                <version>${dozer.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>

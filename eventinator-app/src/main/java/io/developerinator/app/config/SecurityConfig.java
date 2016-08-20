@@ -2,15 +2,16 @@ package io.developerinator.app.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.developerinator.app.security.*;
+import io.developerinator.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
@@ -41,15 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private OAuth2ClientContextFilter oAuth2ClientContextFilter;
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Value("${google.client.id}")
     private String clientId;
     @Value("${google.client.secret}")
     private String clientSecret;
-
-    @Bean
-    public CustomAccessDeniedHandler accessDeniedHandler(){
-        return new CustomAccessDeniedHandler(objectMapper);
-    }
 
     @Bean
     public CustomAuthenticationEntryPoint authenticationEntryPoint(){
@@ -86,7 +85,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public CustomOAuth2ClientAuthenticationProcessingFilter authenticationProcessingFilter(){
-        CustomOAuth2ClientAuthenticationProcessingFilter filter = new CustomOAuth2ClientAuthenticationProcessingFilter(DEFAULT_FILTER_PROCESSOR_URL);
+        CustomOAuth2ClientAuthenticationProcessingFilter filter =
+                new CustomOAuth2ClientAuthenticationProcessingFilter(DEFAULT_FILTER_PROCESSOR_URL, objectMapper, (AccountService) userDetailsService);
         filter.setRestTemplate(googleRestTemplate);
         filter.setTokenServices(tokenServices());
         return filter;
@@ -110,12 +110,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anonymous().disable()
                 .addFilterAfter(oAuth2ClientContextFilter, ExceptionTranslationFilter.class)
                 .addFilterBefore(authenticationProcessingFilter(), FilterSecurityInterceptor.class)
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler()).authenticationEntryPoint(authenticationEntryPoint());
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password("password").roles("user");
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());
     }
 }

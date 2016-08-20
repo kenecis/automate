@@ -1,6 +1,6 @@
 package io.developerinator.app.domain;
 
-import io.developerinator.app.base.Auditable;
+import io.developerinator.app.base.Persistable;
 import io.developerinator.app.ref.EventSource;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-public class Event extends Auditable<Event> {
+public class Event extends Persistable {
 
     @Column
     private String title;

@@ -1,12 +1,17 @@
 package io.developerinator.app.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
+@Getter
+@Setter
 public class Profile {
 
-    @Column(name = "account_id")
+    @Column(name = "external_id")
     private String id;
 
     @Column
