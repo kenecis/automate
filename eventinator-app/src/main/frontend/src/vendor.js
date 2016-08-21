@@ -9,11 +9,13 @@ require('fullcalendar');
 require('angular-ui-calendar');
 require('angular-ui-router');
 require('angular-resource');
+require('ng-tags-input');
 
 /* Styles*/
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
 require('../node_modules/font-awesome/css/font-awesome.css');
 require('../node_modules/fullcalendar/dist/fullcalendar.css');
+require('./app/dashboard/event-modal/custom-tags-input.css');
 require('./public/less/main.less');
 
 /* Devcup Automate Modules */

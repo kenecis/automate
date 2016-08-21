@@ -63,6 +63,7 @@
   "yui": false,
   "globals": {
     "angular": true,
-    "global": true
+    "global": true,
+    "moment": true
   }
 }

@@ -6,6 +6,7 @@ angular.element(document).ready(function(){
         'ui.bootstrap',
         'ui.calendar',
         'ngMessages',
+        'ngTagsInput',
         'app',
         'app.dashboard'
     ]);

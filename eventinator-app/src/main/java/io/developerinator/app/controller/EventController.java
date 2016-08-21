@@ -20,14 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/event")
-public class EventController implements BaseController{
+@RequestMapping("/event")
+public class EventController implements BaseController {
 
     @Autowired
     private EventService eventService;
 
     @ResponseBody
-    @RequestMapping(value = {"/",""}, method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
     public HttpEntity viewAllEvents(){
         return new ResponseEntity<List<EventDto>>(eventService.findAll(), HttpStatus.OK);
     }

@@ -2,13 +2,13 @@
     <h3 class="modal-title" id="modal-title">Create Event</h3>
 </div>
 <div class="modal-body" id="modal-body">
-    <form class="form-horizontal" ng-submit="vm.submit()" id="event-form">
+    <form class="form-horizontal" ng-submit="submit()" id="event-form">
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="title" class="col-md-3 control-label">Title</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="title" name="title">
+                        <input type="text" class="form-control" id="title" name="title" ng-model="eventForm.title">
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <label for="description" class="control-label col-md-3">Description</label>
                     <div class="col-md-9">
-                        <textarea class="form-control" id="description" name="description"></textarea>
+                        <textarea class="form-control" id="description" name="description" ng-model="eventForm.description"></textarea>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <label for="startDate" class="control-label col-md-4">Start Date</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control" id="startDate" name="startDate">
+                        <input type="date" class="form-control" name="startDate" id="startDate" ng-model="eventForm.dateRange.startDate"/>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <label for="endDate" class="control-label col-md-4">End Date</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control" id="endDate" name="startDate">
+                        <input type="date" class="form-control" id="endDate" name="endDate" ng-model="eventForm.dateRange.endDate">
                     </div>
                 </div>
             </div>
@@ -46,9 +46,9 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="form-group">
-                    <label for="startTime" class="control-label col-md-4">Start Date</label>
+                    <label for="startTime" class="control-label col-md-4">Start Time</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control" id="startTime" name="startTime">
+                        <input type="time" class="form-control" id="startTime" name="startTime" ng-model="eventForm.timeRange.startTime">
                     </div>
                 </div>
             </div>
@@ -56,9 +56,9 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="form-group">
-                    <label for="endTime" class="control-label col-md-4">End Date</label>
+                    <label for="endTime" class="control-label col-md-4">End Time</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control" id="endTime" name="endTime">
+                        <input type="time" class="form-control" id="endTime" name="endTime" ng-model="eventForm.timeRange.endTime">
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 <div class="form-group">
                     <label for="fee" class="control-label col-md-4">Fee</label>
                     <div class="col-md-7">
-                        <input type="number" class="form-control" id="fee" name="fee">
+                        <input type="number" class="form-control" id="fee" name="fee" ng-model="eventForm.fee">
                     </div>
                 </div>
             </div>
@@ -90,14 +90,31 @@
                 </div>
             </div>
         </div>
-
-        <!--<div class="form-group">-->
-        <!--<label for="location" class="control-label">Location</label>-->
-        <!--<input type="text" class="form-control" id="location" name="location">-->
-        <!--</div>-->
+        <div class="row">
+            <div class="col-md-9">
+                <div class="form-group">
+                    <style scoped>
+                        .custom-tags.ng-pristine .tags {
+                            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                            border: 1px solid #ccc
+                        }
+                    </style>
+                    <label for="interests" class="control-label col-sm-4">Tags</label>
+                    <tags-input ng-model="eventForm.interests" class="col-md-8 custom-tags" id="interests"
+                                add-from-autocomplete-only="false" ng-required="'true'"
+                                display-property="name" placeholder="Add Tags"
+                                key-property="id" replace-spaces-with-dashes="false"
+                                template="/modal-tpl/tags-input-template.html">
+                        <auto-complete source="loadInterests($query)"
+                                       template="/modal-tpl/tags-autocomplete-template.html">
+                        </auto-complete>
+                    </tags-input>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="submit()">OK</button>
+    <button class="btn btn-primary" type="submit"  form="event-form">OK</button>
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 </div>

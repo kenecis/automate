@@ -114,8 +114,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**").fullyAuthenticated()
-                .antMatchers(PERMIT_ALL).permitAll()
+//                .antMatchers("/").fullyAuthenticated()
+                .antMatchers("/**").permitAll()
                 .and()
                 .csrf().disable()
                 .formLogin().disable()
@@ -128,6 +128,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(PERMIT_ALL);
+        web.ignoring().antMatchers("/**");
     }
 }

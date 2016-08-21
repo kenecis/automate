@@ -1,4 +1,4 @@
-package io.developerinator.app.resource;
+package io.developerinator.app.controller;
 
 import io.developerinator.app.dto.AccountDto;
 import io.developerinator.service.AccountService;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/user")
-public class PrincipalResource {
+public class PrincipalController {
 
     @Autowired
     private AccountService accountService;
