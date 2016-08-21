@@ -1,9 +1,11 @@
 package io.developerinator.app.domain;
 
-import java.time.LocalTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,9 +17,11 @@ import lombok.ToString;
 @ToString
 public class TimeRange {
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column
-    private LocalTime startTime;
+    private Date startTime;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column
-    private LocalTime endTime;
+    private Date endTime;
 }

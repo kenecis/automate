@@ -1,9 +1,11 @@
 package io.developerinator.app.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
-import org.joda.time.LocalDate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,9 +17,11 @@ import lombok.ToString;
 @ToString
 public class DateRange {
 
+    @Temporal(TemporalType.DATE)
     @Column
-    private LocalDate startDate;
+    private Date startDate;
 
+    @Temporal(TemporalType.DATE)
     @Column
-    private LocalDate endDate;
+    private Date endDate;
 }
