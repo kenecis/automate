@@ -42,13 +42,13 @@ public class EventController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/events", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
     public HttpEntity viewAllEvents(){
         return new ResponseEntity<List<EventDto>>(eventService.findAll(), HttpStatus.OK);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/view", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/events", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
     public HttpEntity viewAllEventsBeSource(@RequestParam("source")EventSource source){
 
         Validate.notNull(source);
@@ -56,7 +56,7 @@ public class EventController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/view", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    @RequestMapping(value = "/iteneraries", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
     public HttpEntity findIteneraries(@RequestBody IteneraryDto iteneraryDto){
 
         Validate.notNull(iteneraryDto);
