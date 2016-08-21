@@ -1,9 +1,6 @@
 package io.developerinator.app.controller;
 
 
-import io.developerinator.app.dto.EventDto;
-import io.developerinator.app.dto.WatchOutDto;
-import io.developerinator.service.WatchOutService;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -15,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.developerinator.app.dto.WatchOutDto;
+import io.developerinator.service.WatchOutService;
+
 @RestController
-@RequestMapping(name = "watchout")
+@RequestMapping(value = "watchout")
 public class WatchOutController implements BaseController{
 
     @Autowired
@@ -30,6 +30,4 @@ public class WatchOutController implements BaseController{
 
         return new ResponseEntity<WatchOutDto>(watchOutService.save(watchOutDto), HttpStatus.OK);
     }
-
-
 }
