@@ -45,4 +45,7 @@ public class Event extends Persistable {
 
     @Embedded
     private Location location;
+
+    @OneToOne(optional = true, fetch = FetchType.EAGER)
+    private Event parent;
 }
