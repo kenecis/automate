@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(name = "/event")
-public class EventController {
+public class EventController implements BaseController{
 
     @Autowired
     private EventService eventService;

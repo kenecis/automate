@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(name = "watchout")
-public class WatchOutController extends BaseController{
+public class WatchOutController implements BaseController{
 
-    /*@ResponseBody
-    @RequestMapping(name = "/")
-    public HttpEntity save()*/
+//    @ResponseBody
+//    @RequestMapping(name = "/")
+//    public HttpEntity save()
 }
