@@ -4,7 +4,9 @@ angular.element(document).ready(function(){
         'ui.router',
         'ngResource',
         'ui.bootstrap',
+        'ui.calendar',
         'ngMessages',
-        'app'
+        'app',
+        'app.dashboard'
     ]);
 });

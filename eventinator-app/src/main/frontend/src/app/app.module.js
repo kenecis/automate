@@ -30,13 +30,15 @@ module.exports = angular.module('app', [])
             $rootScope.$on('$stateChangeStart', function (e, toState) {
                 RootService.principal().$promise.then(function (user) {
                     $rootScope.currentUser = user;
-                    if (toState.data.requireLogin &&
-                        $rootScope.currentUser !== undefined &&
-                        $rootScope.currentUser.userType !== toState.data.userType) {
+                    if (toState.data && toState.data.requireLogin &&
+                        $rootScope.currentUser !== undefined) {
                         event.preventDefault();
                         RootService.logout().$promise.then(function () {
                             $state.go('evr.index');
                         });
+                    }
+                    if(toState.name === 'evr.index' && $rootScope.currentUser !== undefined){
+                        $state.go('evr.dashboard.index');
                     }
                 }, function(){
                     event.preventDefault();

@@ -15,7 +15,7 @@
   "plusplus": false,
   "quotmark": "single",
   "undef": true,
-  "unused": true,
+  "unused": false,
   "strict": true,
   "maxlen": 140,
   "varstmt": false,

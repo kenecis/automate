@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
+            <img ng-src="{{currentUser.profile.picture}}" class="img-responsive img-thumbnail" alt="Responsive image">
+        </div>
+        <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
+            <h3>
+                {{currentUser.profile.name}}
+                <br>
+                <small>{{currentUser.username}}</small>
+            </h3>
+        </div>
+    </div>
+    <br>
+    <nav class="navbar evr-sharp evr-bg" >
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li ui-sref-active="active"><a ui-sref="evr.dashboard.index" >Calendar</a></li>
+                <li ui-sref-active="active"><a ui-sref="evr.dashboard.itineraries" >Itineraries</a></li>
+                <li ui-sref-active="active"><a ui-sref="evr.dashboard.watchouts" >Watch-Outs</a></li>
+                <li ui-sref-active="active"><a ui-sref="evr.dashboard.recommendations" >Recommendations</a></li>
+                <li ui-sref-active="active"><a ui-sref="evr.dashboard.profile" >Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="row">
+        <ui-view></ui-view>
+    </div>
+</div>

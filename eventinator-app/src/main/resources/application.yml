@@ -9,6 +9,8 @@ spring:
     database-platform: "@hibernate.dialect@"
     hibernate:
       ddl-auto: create-drop
+  security:
+    strategy: MODE_GLOBAL
 server:
   session:
     cookie:

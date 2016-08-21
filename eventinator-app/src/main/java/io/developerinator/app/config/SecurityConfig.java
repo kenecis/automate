@@ -6,11 +6,18 @@ import io.developerinator.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
@@ -21,11 +28,15 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
  * Created by jvillanueva on 8/20/16.
  */
 @Configuration
+@Import(OAuth2SecurityConfiguration.class)
+@EnableOAuth2Sso
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PERMIT_ALL = {
             "/", "/googleLogin", "/api/logout", "/js/**", "/css/**", "/images/**",
-            "/static/**", "/public/**", "/favicon.ico"
+            "/static/**", "/public/**", "/favicon.ico", "/index.html", "/api/user"
     };
     private static final String LOGIN_FORM_URL = "/googleLogin";
     private static final String DEFAULT_FILTER_PROCESSOR_URL = LOGIN_FORM_URL;
@@ -79,6 +90,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public SecurityContext securityContext(){
+        return SecurityContextHolder.getContext();
+    }
+
+    @Bean
     public CustomLogoutSuccessHandler logoutSuccessHandler(){
         return new CustomLogoutSuccessHandler(objectMapper);
     }
@@ -86,7 +102,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CustomOAuth2ClientAuthenticationProcessingFilter authenticationProcessingFilter(){
         CustomOAuth2ClientAuthenticationProcessingFilter filter =
-                new CustomOAuth2ClientAuthenticationProcessingFilter(DEFAULT_FILTER_PROCESSOR_URL, objectMapper, (AccountService) userDetailsService);
+                new CustomOAuth2ClientAuthenticationProcessingFilter(DEFAULT_FILTER_PROCESSOR_URL, objectMapper, (AccountService) userDetailsService, securityContext());
         filter.setRestTemplate(googleRestTemplate);
         filter.setTokenServices(tokenServices());
         return filter;
@@ -98,8 +114,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
+                .antMatchers("/api/**").fullyAuthenticated()
                 .antMatchers(PERMIT_ALL).permitAll()
-                .anyRequest().fullyAuthenticated()
                 .and()
                 .csrf().disable()
                 .formLogin().disable()
@@ -108,5 +124,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(oAuth2ClientContextFilter, ExceptionTranslationFilter.class)
                 .addFilterBefore(authenticationProcessingFilter(), FilterSecurityInterceptor.class)
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(PERMIT_ALL);
     }
 }

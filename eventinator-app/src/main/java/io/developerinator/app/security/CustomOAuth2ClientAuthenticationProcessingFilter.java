@@ -7,6 +7,7 @@ import io.developerinator.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 
 import javax.servlet.FilterChain;
@@ -26,10 +27,13 @@ public class CustomOAuth2ClientAuthenticationProcessingFilter extends OAuth2Clie
 
     private AccountService accountService;
 
-    public CustomOAuth2ClientAuthenticationProcessingFilter(String defaultFilterProcessesUrl, ObjectMapper objectMapper, AccountService accountService) {
+    private SecurityContext securityContext;
+
+    public CustomOAuth2ClientAuthenticationProcessingFilter(String defaultFilterProcessesUrl, ObjectMapper objectMapper, AccountService accountService, SecurityContext securityContext) {
         super(defaultFilterProcessesUrl);
         this.objectMapper = objectMapper;
         this.accountService = accountService;
+        this.securityContext =  securityContext;
     }
 
     @Override
@@ -42,7 +46,7 @@ public class CustomOAuth2ClientAuthenticationProcessingFilter extends OAuth2Clie
         if(accountService.loadUserByUsername(profileEntity.getBody().getEmail()) == null){
             accountService.save(profileEntity.getBody());
         }
-
+        securityContext.setAuthentication(authResult);
     }
 
     @Override

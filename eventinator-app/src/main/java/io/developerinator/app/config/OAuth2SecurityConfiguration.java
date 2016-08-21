@@ -2,8 +2,7 @@ package io.developerinator.app.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
@@ -21,8 +20,6 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * Created by jvillanueva on 8/20/16.
  */
-@Configuration
-@EnableOAuth2Sso
 public class OAuth2SecurityConfiguration {
 
     @Autowired

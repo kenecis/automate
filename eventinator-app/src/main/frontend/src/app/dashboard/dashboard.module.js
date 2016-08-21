@@ -1,20 +1,19 @@
 'use strict';
-module.exports = angular.module('app')
+module.exports = angular.module('app.dashboard',[])
     .config([
         '$urlRouterProvider', '$stateProvider',
         function ($urlRouterProvider, $stateProvider) {
-            $stateProvider.state('evr', {
-                url: '/',
-                template: require('./common/template.html'),
-                controller: require('./common/root.controller'),
+            $stateProvider.state('evr.dashboard', {
+                url: 'dashboard',
+                template: require('./dashboard.html'),
+                controller: require('./dashboard.controller'),
                 controllerAs: 'vm',
                 abstract: true
-            }).state('evr.index', {
+            }).state('evr.dashboard.index', {
                 url: '',
-                template: require('./common/unauthenticated.html'),
-                data: {
-                    requireLogin: false
-                }
+                template: require('./landing.html'),
+                controller: require('./landing.controller'),
+                controllerAs: 'vm'
             });
         }
-    ]);
+    ]).service('EventModalService', require('./event-modal/event-modal.service'));
