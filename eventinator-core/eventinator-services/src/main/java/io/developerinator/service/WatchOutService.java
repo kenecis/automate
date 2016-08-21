@@ -2,16 +2,17 @@ package io.developerinator.service;
 
 
 import io.developerinator.app.domain.WatchOut;
+import io.developerinator.app.dto.WatchOutDto;
 
 import java.util.List;
 
 public interface WatchOutService {
 
-    WatchOut save(WatchOut watchOut);
+    WatchOutDto save(WatchOutDto watchOut);
 
-    void delete(WatchOut watchOut);
+    void delete(long id);
 
-    WatchOut find(long id);
+    WatchOutDto find(long id);
 
-    List<WatchOut> findAll();
+    List<WatchOutDto> findAll();
 }
