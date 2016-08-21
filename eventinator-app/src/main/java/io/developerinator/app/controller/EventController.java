@@ -27,6 +27,12 @@ public class EventController {
     private EventService eventService;
 
     @ResponseBody
+    @RequestMapping(value = {"/",""}, method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+    public HttpEntity viewAllEvents(){
+        return new ResponseEntity<List<EventDto>>(eventService.findAll(), HttpStatus.OK);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/save", method = RequestMethod.POST, produces = "application/json; charset=UTF-8", consumes = "application/json; charset=UTF-8")
     public HttpEntity saveEvent(@RequestBody EventDto eventDto){
 
@@ -39,12 +45,6 @@ public class EventController {
     public HttpEntity viewEventDetails(@PathVariable("id") long id){
 
         return new ResponseEntity<EventDto>(eventService.find(id), HttpStatus.OK);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/events", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-    public HttpEntity viewAllEvents(){
-        return new ResponseEntity<List<EventDto>>(eventService.findAll(), HttpStatus.OK);
     }
 
     @ResponseBody
